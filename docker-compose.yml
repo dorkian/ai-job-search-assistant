@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    container_name: ai-job-search-assistant
+    ports:
+      - "${PORT:-3031}:${PORT:-3031}"
+    volumes:
+      # Persist SQLite database across container restarts
+      - ./data:/app/data
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT:-3031}
+      DB_PATH: /app/data/jobsearch.db
+      # API keys — loaded from .env file
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      CLAUDE_MODEL: ${CLAUDE_MODEL:-claude-sonnet-4-20250514}
+      SERPAPI_KEY: ${SERPAPI_KEY:-}
+      TAVILY_API_KEY: ${TAVILY_API_KEY:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://localhost:$${PORT:-3031}/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s

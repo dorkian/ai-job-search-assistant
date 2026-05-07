@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+data
+.git
+.gitignore
+pnpm-lock.yaml
+*.md
+*.bat
+*.log
+.DS_Store
