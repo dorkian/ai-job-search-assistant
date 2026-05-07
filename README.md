@@ -1,6 +1,10 @@
 # ⚡ AI Job Search Assistant
 
 An AI-powered, self-hosted job search platform that analyzes your CV, finds matching jobs, grades them across 6 dimensions, and helps you prepare for interviews.
+## Demo
+
+![Dashboard](docs/screenshots/dashboard.png)
+![Job Search](docs/screenshots/search.png)
 
 ## Features
 
